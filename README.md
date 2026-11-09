@@ -8,13 +8,18 @@ list of unique, correctly formatted email addresses in their browser.
 
 ## Current progress
 
-Milestone 1 adds the page layout on `develop`: an email input, a disabled
-"Clean list" button, and a results area. Cleaning and copying are not implemented
-yet; the page labels itself as a layout preview.
+Milestone 2 on `develop` adds working format checks, case-insensitive duplicate
+detection, line-by-line feedback, counts, and a cleaned list. Editing the input
+clears old results. The copy button is still disabled; select and copy the output
+manually until the next milestone. Input is processed locally without storage
+or network requests.
 
 To review it on Windows, download the `develop` branch using GitHub's
 **Code > Download ZIP**, extract the ZIP, and open `index.html` in Edge or Chrome.
 Keep `styles.css` in the same folder as `index.html`.
+Keep `cleaner.js` and `app.js` there too, and enable JavaScript in your browser.
+
+Run the logic tests with Node.js: `node --test cleaner.test.js`.
 
 ## Planned features
 

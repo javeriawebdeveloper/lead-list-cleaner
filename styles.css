@@ -26,6 +26,9 @@ textarea:focus-visible, button:focus-visible { outline: 3px solid #236eae; outli
 button { min-height: 44px; padding: 10px 20px; border: 1px solid #235d49; border-radius: 8px; background: #235d49; color: #fff; font: inherit; font-weight: 600; }
 button:disabled { cursor: not-allowed; background: #e3e9e5; color: #52635b; border-color: #b2c0b7; }
 footer { margin-top: 24px; font-size: .85rem; color: #52675f; }
+#issues { padding-left: 22px; overflow-wrap: anywhere; }
+#issues li { margin-bottom: 12px; }
+#summary { font-weight: 600; }
 @media (max-width: 720px) {
   .workspace { grid-template-columns: 1fr; }
   .app { padding: 28px 16px; }
