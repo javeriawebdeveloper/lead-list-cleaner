@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Clean repeated emails and basic format errors from a pasted list. Email format checks only.">
+  <title>Lead List Cleaner</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app">
+    <header>
+      <p class="eyebrow">A little less list work</p>
+      <h1>Lead List Cleaner</h1>
+      <p class="intro">One email per line. A clearer list on the other side.</p>
+      <p class="notice"><strong>Email format only.</strong> This tool will not verify mailboxes or guarantee delivery.</p>
+    </header>
+
+    <p class="build-note" id="build-note">Layout preview: cleaning and copying will be added in the next milestones.</p>
+
+    <div class="workspace">
+      <section class="panel" aria-labelledby="input-title">
+        <h2 id="input-title">1. Paste your list</h2>
+        <label for="email-input">Email addresses</label>
+        <p class="hint" id="input-hint">Use one address per line. Example addresses below are fictional.</p>
+        <textarea id="email-input" rows="12" spellcheck="false" autocapitalize="none" autocomplete="off" aria-describedby="input-hint build-note" placeholder="alex@example.com&#10;sam@example.com&#10;alex@example.com"></textarea>
+        <button type="button" disabled aria-describedby="build-note">Clean list</button>
+      </section>
+
+      <section class="panel" aria-labelledby="results-title">
+        <h2 id="results-title">2. Review your results</h2>
+        <p class="hint">Unique addresses that pass the format checks will appear here.</p>
+        <label for="cleaned-output">Cleaned email list</label>
+        <textarea id="cleaned-output" rows="12" readonly placeholder="Your cleaned list will appear here."></textarea>
+        <button type="button" class="secondary" disabled aria-describedby="build-note">Copy cleaned list</button>
+        <h3>Duplicates and formatting errors</h3>
+        <p class="hint">Line numbers and explanations will appear here after cleaning.</p>
+      </section>
+    </div>
+    <footer>Planned processing stays in your browser. No email sending or mailbox verification.</footer>
+  </main>
+</body>
+</html>

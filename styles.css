@@ -1,0 +1,33 @@
+:root {
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: #17332e;
+  background: #f3f6f2;
+  line-height: 1.6;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; }
+.app { max-width: 1120px; margin: 0 auto; padding: 48px 24px; }
+.eyebrow { color: #35695c; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; font-size: .8rem; }
+h1 { font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1.15; margin: 12px 0; }
+.intro { font-size: 1.15rem; color: #47605a; }
+.notice { border-left: 4px solid #347761; padding: 12px 16px; background: #e5eee6; }
+.build-note { color: #65501e; background: #fff4d8; padding: 12px 16px; border-radius: 8px; }
+.workspace { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin-top: 28px; }
+.panel { background: #fff; padding: 24px; border: 1px solid #ccd8d0; border-radius: 16px; }
+h2 { margin: 0 0 20px; font-size: 1.3rem; }
+h3 { font-size: 1rem; margin-bottom: 4px; }
+label { display: block; font-weight: 600; }
+.hint { font-size: .9rem; color: #52675f; margin: 6px 0 12px; }
+textarea { display: block; width: 100%; min-height: 240px; padding: 14px; margin: 10px 0 16px; border: 1px solid #81988c; border-radius: 8px; resize: vertical; font: 1rem/1.6 Consolas, monospace; color: #17332e; background: #fff; }
+textarea::placeholder { color: #64756e; opacity: 1; }
+textarea[readonly] { background: #f7faf7; }
+textarea:focus-visible, button:focus-visible { outline: 3px solid #236eae; outline-offset: 3px; }
+button { min-height: 44px; padding: 10px 20px; border: 1px solid #235d49; border-radius: 8px; background: #235d49; color: #fff; font: inherit; font-weight: 600; }
+button:disabled { cursor: not-allowed; background: #e3e9e5; color: #52635b; border-color: #b2c0b7; }
+footer { margin-top: 24px; font-size: .85rem; color: #52675f; }
+@media (max-width: 720px) {
+  .workspace { grid-template-columns: 1fr; }
+  .app { padding: 28px 16px; }
+  .panel { padding: 20px; }
+}

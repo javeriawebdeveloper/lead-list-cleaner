@@ -6,7 +6,15 @@ Pasted email lists can contain repeated addresses, blank lines, and typing
 mistakes. Lead List Cleaner will help users review a list and produce a clean
 list of unique, correctly formatted email addresses in their browser.
 
-This repository currently contains the project plan. The app is not built yet.
+## Current progress
+
+Milestone 1 adds the page layout on `develop`: an email input, a disabled
+"Clean list" button, and a results area. Cleaning and copying are not implemented
+yet; the page labels itself as a layout preview.
+
+To review it on Windows, download the `develop` branch using GitHub's
+**Code > Download ZIP**, extract the ZIP, and open `index.html` in Edge or Chrome.
+Keep `styles.css` in the same folder as `index.html`.
 
 ## Planned features
 
