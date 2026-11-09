@@ -8,16 +8,22 @@ list of unique, correctly formatted email addresses in their browser.
 
 ## Current progress
 
-Milestone 2 on `develop` adds working format checks, case-insensitive duplicate
-detection, line-by-line feedback, counts, and a cleaned list. Editing the input
-clears old results. The copy button is still disabled; select and copy the output
-manually until the next milestone. Input is processed locally without storage
-or network requests.
+All three development milestones are implemented on `develop`: format checks,
+case-insensitive duplicate detection, line-by-line feedback, counts, and a copy
+button. Editing the input clears old results. Input is processed locally without
+storage or network requests. Final Windows browser review is still pending.
 
 To review it on Windows, download the `develop` branch using GitHub's
 **Code > Download ZIP**, extract the ZIP, and open `index.html` in Edge or Chrome.
 Keep `styles.css` in the same folder as `index.html`.
 Keep `cleaner.js` and `app.js` there too, and enable JavaScript in your browser.
+
+Paste one address per line, choose **Clean list**, review the results, then choose
+**Copy cleaned list**. The copy button is enabled only when there are accepted
+addresses. If clipboard access is unavailable or blocked, the app selects the
+output and asks you to press **Ctrl+C** on Windows. You can then paste the result
+into a text editor to check it. Editing the input clears the output and disables
+copying until you clean the list again.
 
 Run the logic tests with Node.js: `node --test cleaner.test.js`.
 

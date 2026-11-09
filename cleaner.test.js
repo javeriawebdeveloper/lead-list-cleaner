@@ -64,3 +64,70 @@ test('UI displays issues as text and clears results when input changes', () => {
   assert.equal(elements.get('cleaned-output').value, '');
   assert.equal(elements.get('issues').children.length, 0);
 });
+
+function copyFixture(navigator) {
+  const elements = new Map();
+  const document = {
+    getElementById(id) {
+      if (!elements.has(id)) elements.set(id, {
+        value: '', textContent: '', disabled: id === 'copy-button', listeners: {},
+        addEventListener(type, fn) { this.listeners[type] = fn; },
+        replaceChildren() {}, append() {},
+        focus() { this.focused = true; }, select() { this.selected = true; }
+      });
+      return elements.get(id);
+    },
+    createElement() { return { textContent: '' }; }
+  };
+  require('node:vm').runInNewContext(require('node:fs').readFileSync('app.js', 'utf8'), { document, navigator, cleanList });
+  return id => elements.get(id);
+}
+
+test('copy writes the exact cleaned list and editing disables it', async () => {
+  let copied;
+  const el = copyFixture({ clipboard: { async writeText(text) { copied = text; } } });
+  assert.equal(el('copy-button').disabled, true);
+  el('email-input').value = 'alex@example.com\nsam@example.com\nALEX@example.com';
+  el('clean-button').listeners.click();
+  assert.equal(el('copy-button').disabled, false);
+  await el('copy-button').listeners.click();
+  assert.equal(copied, 'alex@example.com\nsam@example.com');
+  assert.equal(el('copy-status').textContent, 'Cleaned list copied.');
+  el('email-input').listeners.input();
+  assert.equal(el('copy-button').disabled, true);
+  assert.equal(el('copy-status').textContent, '');
+  el('email-input').value = 'missing-at.example.com';
+  el('clean-button').listeners.click();
+  assert.equal(el('copy-button').disabled, true);
+});
+
+for (const [name, navigator] of [
+  ['missing', {}],
+  ['denied', { clipboard: { async writeText() { throw new Error('Denied'); } } }]
+]) {
+  test(`clipboard ${name}: selects output and explains manual copying`, async () => {
+    const el = copyFixture(navigator);
+    el('email-input').value = 'alex@example.com';
+    el('clean-button').listeners.click();
+    await el('copy-button').listeners.click();
+    assert.equal(el('cleaned-output').focused, true);
+    assert.equal(el('cleaned-output').selected, true);
+    assert.match(el('copy-status').textContent, /Ctrl\+C/);
+    assert.equal(el('copy-button').disabled, false);
+  });
+}
+
+test('a delayed clipboard response cannot restore stale UI after editing', async () => {
+  let finish;
+  const el = copyFixture({ clipboard: { writeText() { return new Promise(resolve => { finish = resolve; }); } } });
+  el('email-input').value = 'alex@example.com';
+  el('clean-button').listeners.click();
+  const copying = el('copy-button').listeners.click();
+  el('email-input').value = '';
+  el('email-input').listeners.input();
+  finish();
+  await copying;
+  assert.equal(el('copy-status').textContent, '');
+  assert.equal(el('copy-button').disabled, true);
+  assert.equal(el('cleaned-output').value, '');
+});

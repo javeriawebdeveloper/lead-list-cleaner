@@ -18,7 +18,7 @@
       <p class="notice"><strong>Email format only.</strong> This tool will not verify mailboxes or guarantee delivery.</p>
     </header>
 
-    <p class="build-note" id="build-note">Cleaning is ready. Copy button support is coming in the next milestone; for now, select and copy the results manually.</p>
+    <p class="build-note" id="build-note">Paste your list, choose Clean list, then review the results before copying.</p>
     <noscript><p>Enable JavaScript to clean your list. Your input stays in this browser.</p></noscript>
 
     <div class="workspace">
@@ -36,7 +36,8 @@
         <p class="hint">Unique addresses that pass the format checks will appear here.</p>
         <label for="cleaned-output">Cleaned email list</label>
         <textarea id="cleaned-output" rows="12" readonly placeholder="Your cleaned list will appear here."></textarea>
-        <button type="button" class="secondary" disabled aria-describedby="build-note">Copy cleaned list</button>
+        <button type="button" id="copy-button" class="secondary" disabled aria-describedby="copy-status">Copy cleaned list</button>
+        <p id="copy-status" class="hint" role="status" aria-live="polite"></p>
         <h3>Duplicates and formatting errors</h3>
         <ul id="issues" aria-label="Issues by input line"></ul>
       </section>
